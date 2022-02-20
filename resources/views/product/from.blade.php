@@ -24,6 +24,10 @@
                     <label class="d-block">Name</label>
                     {{ Form::text('name', null, ['class' => 'form-control', 'placeholder'=> 'Enter product name']) }}
                 </div>
+                <div class="form-group">
+                    <label class="d-block">Line Conveyor</label>
+                    {{ Form::text('line', null, ['class' => 'form-control', 'placeholder'=> 'Line conveyor']) }}
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

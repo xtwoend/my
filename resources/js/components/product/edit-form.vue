@@ -24,6 +24,10 @@
                     <label class="d-block">Name</label>
                     <input v-model="data.name" type="text" class="form-control" placeholder="Name">
                 </div>
+                <div class="form-group">
+                    <label class="d-block">Line Conveyor</label>
+                    <input v-model="data.line" type="text" class="form-control" placeholder="Line conveyor">
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

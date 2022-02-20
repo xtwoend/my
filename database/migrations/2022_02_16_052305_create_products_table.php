@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('gtin', 14)->unique()->index();
             $table->string('name');
+            $table->string('line')->nullable();
             $table->timestamps();
         });
     }

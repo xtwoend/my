@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('date');
             $table->string('status')->nullable();
             $table->tinyInteger('trying')->default(0);
-            $table->json('response')->nullable();
+            $table->longText('response')->nullable();
             $table->timestamps();
         });
     }

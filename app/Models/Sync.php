@@ -9,5 +9,8 @@ class Sync extends Model
 {
     use HasFactory;
 
+    const FAILED = 'FAILED';
+    const SUCCESS = 'SUCCESS';
+    
     protected $fillable = ['location_id', 'date', 'status', 'trying', 'response'];
 }

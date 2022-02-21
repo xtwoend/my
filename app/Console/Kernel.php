@@ -19,7 +19,7 @@ class Kernel extends ConsoleKernel
     {
         $fastDay = Carbon::now()->subDay()->format('Y-m-d');
         $schedule->command('attendance:schedule:generator')->weeklyOn(1, '00:00');
-        $schedule->command(SyncCommand::class, [$fastDay])->dailyAt('07:22');
+        $schedule->command(SyncCommand::class, [$fastDay])->dailyAt('07:00');
     }
 
     /**

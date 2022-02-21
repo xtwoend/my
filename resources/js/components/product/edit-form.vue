@@ -49,21 +49,24 @@ export default {
         return {
             data: {
                 gtin: null,
-                name: null
+                name: null,
+                line: null
             }
         }
     },
     mounted(){
         this.data = {
             gtin: this.product.gtin,
-            name: this.product.name
+            name: this.product.name,
+            line: this.product.line
         }
     },
     watch: {
         product: function(val) {
             this.data = {
                 gtin: val.gtin,
-                name: val.name
+                name: val.name,
+                line: val.line
             }
         }
     },

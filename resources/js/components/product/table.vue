@@ -59,6 +59,7 @@ export default {
                 {name: 'id', title: '#', sortField: 'id', titleClass: 'text-center w-60'},
                 {name: 'gtin', title: 'SKU Barcode', sortField: 'gtin'},
                 {name: 'name', title: 'Product Name', sortField: 'name'},
+                {name: 'line', title: 'Line Conveyor', sortField: 'line'},
                 {name: 'action', title: ''},
             ],
             params: {},

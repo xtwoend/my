@@ -48,10 +48,9 @@ class SyncCommand extends Command
     public function handle()
     {
         $date = $this->argument('date');
-        $date = Carbon::parse($date)->format('Y-m-d');
-
+        
         $already = Sync::where('date', $date)->whereStatus(Sync::SUCCESS)->first();
-
+       
         if(! $already) {
             $ids = Schedule::whereDate('from', $date)->pluck('id')->toArray();
             $rows = InventoryReport::with('schedule.shift', 'product')->whereIn('schedule_id', $ids)->get();
@@ -81,18 +80,29 @@ class SyncCommand extends Command
             $resp = $client->request('POST', config('warehouse.sap_sync_url'), [
                 'json' => $data
             ]);
-            if($resp->getStatusCode() == 200) {
+            
+            Sync::updateOrCreate([
+                'date' => $date,
+            ], [
+                'location_id' => 1,
+                'status' => ($resp->getStatusCode() == 200 || $resp->getStatusCode() == 201)? Sync::SUCCESS : Sync::FAILED,
+                'trying' => $this->trying,
+                'response' => (string) $resp->getBody()
+            ]);
+
+        } catch (\Throwable $th) {
+            $resp = $th->getMessage();
+            if($this->trying < 3) {
+                $this->send($data, $date);
+            }else {
                 Sync::updateOrCreate([
                     'date' => $date,
                 ], [
-                    'status' => Sync::SUCCESS,
+                    'location_id' => 1,
+                    'status' => Sync::FAILED,
                     'trying' => $this->trying,
-                    'response' => (string) $resp->getBody()
+                    'response' => (string) $resp
                 ]);
-            }
-        } catch (\Throwable $th) {
-            if($this->trying <= 3) {
-                $this->send($data, $date);
             }
         }
     }

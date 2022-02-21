@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SyncController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ProductController;
@@ -48,6 +49,10 @@ Route::group([
     Route::put('/location/{id}', [LocationController::class, 'update'])->name('location.update');
     Route::delete('/location/{id}', [LocationController::class, 'remove'])->name('location.remove');
 
+    // Sync To SAP
+    Route::get('/sync', [SyncController::class, 'index'])->name('sync');
+    Route::post('/sync', [SyncController::class, 'sync'])->name('sync.store');
+    Route::get('/sync/log', [SyncController::class, 'log'])->name('sync.log');
 });
 
 // Inventory In

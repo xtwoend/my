@@ -32,7 +32,7 @@
 </div>
 <div class="row row-xs">
     <div class="col">
-        <rekap-table url="{{ route('report.data', ['date' => $date]) }}"></rekap-table>
+        <report-table url="{{ route('report.data', ['date' => $date]) }}"></report-table>
     </div>
 </div>
 @endsection

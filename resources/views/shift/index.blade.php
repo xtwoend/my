@@ -19,7 +19,7 @@
 </div>
 <div>
     <shift-table url="{{ route('shift.data') }}" ref="table"></shift-table>
-    <shift-modal ref="shiftModal" id="shift-form" url="{{ route('shift.store') }}" @reload="$refs.table.$refs.vuetable.reload()"></shift-modal>
+    <shift-form ref="shiftModal" id="shift-form" url="{{ route('shift.store') }}" @reload="$refs.table.$refs.vuetable.reload()"></shift-form>
 </div>
 @endsection
 

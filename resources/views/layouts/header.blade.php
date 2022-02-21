@@ -22,7 +22,6 @@
                 <ul class="navbar-menu-sub">
                     <li class="nav-sub-item"><a href="{{ url('/line-in') }}" class="nav-sub-link"><i data-feather="log-in"></i>Line In</a></li>
                     <li class="nav-sub-item"><a href="{{ url('/report') }}" class="nav-sub-link"><i data-feather="clipboard"></i>Rekapitulasi</a></li>
-                    {{-- <li class="nav-sub-item"><a href="{{ url('/line-out') }}" class="nav-sub-link"><i data-feather="log-out"></i>Line Out</a></li> --}}
                 </ul>
             </li>
             <li class="nav-item">
@@ -36,6 +35,8 @@
                 <ul class="navbar-menu-sub">
                     <li class="nav-sub-item"><a href="{{ route('shift') }}" class="nav-sub-link"><i data-feather="calendar"></i>Shifts</a></li>
                     <li class="nav-sub-item"><a href="{{ route('location') }}" class="nav-sub-link"><i data-feather="map-pin"></i> Location</a></li>
+                    <li class="nav-sub-item"><a href="{{ route('sync') }}" class="nav-sub-link"><i data-feather="refresh-cw"></i> SAP Sync</a></li>
+                </ul>
             </li>
         </ul>
     </div><!-- navbar-menu-wrapper -->

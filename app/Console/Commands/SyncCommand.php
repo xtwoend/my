@@ -84,7 +84,7 @@ class SyncCommand extends Command
             Sync::updateOrCreate([
                 'date' => $date,
             ], [
-                'location_id' => 1,
+                'location_id' => config('warehouse.location') ?: 1,
                 'status' => ($resp->getStatusCode() == 200 || $resp->getStatusCode() == 201)? Sync::SUCCESS : Sync::FAILED,
                 'trying' => $this->trying,
                 'response' => (string) $resp->getBody()
@@ -98,7 +98,7 @@ class SyncCommand extends Command
                 Sync::updateOrCreate([
                     'date' => $date,
                 ], [
-                    'location_id' => 1,
+                    'location_id' => config('warehouse.location') ?: 1,
                     'status' => Sync::FAILED,
                     'trying' => $this->trying,
                     'response' => (string) $resp

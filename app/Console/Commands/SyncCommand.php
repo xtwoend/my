@@ -75,7 +75,7 @@ class SyncCommand extends Command
     public function send($data, $date)
     {
         try {
-            $this->trying += 1;
+            $this->trying++;
             $client = new Client;
             $resp = $client->request('POST', config('warehouse.sap_sync_url'), [
                 'json' => $data

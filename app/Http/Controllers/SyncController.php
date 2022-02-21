@@ -66,7 +66,7 @@ class SyncController extends Controller
     protected function send($data, $date)
     {
         try {
-            $this->trying += 0;
+            $this->trying++;
             $client = new Client;
             $resp = $client->request('POST', config('warehouse.sap_sync_url'), [
                 'json' => $data

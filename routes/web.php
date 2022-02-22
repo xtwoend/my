@@ -68,6 +68,7 @@ Route::get('/schedule/active', [ScheduleController::class, 'active'])->name('sch
 // Report
 Route::get('/report', [ReportController::class, 'index'])->name('report.index');
 Route::get('/report/data', [ReportController::class, 'data'])->name('report.data');
+Route::get('/report/print', [ReportController::class, 'print'])->name('report.print');
 Route::get('/report/download', [ReportController::class, 'download'])->name('report.download');
 
 require __DIR__.'/auth.php';

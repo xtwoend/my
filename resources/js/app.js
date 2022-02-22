@@ -17,6 +17,7 @@ import Datepicker from 'vuejs-datepicker'
 
 import 'sweetalert2/dist/sweetalert2.min.css'
 import 'vue2-timepicker/dist/VueTimepicker.css'
+import 'vue-multiselect/dist/vue-multiselect.min.css'
 
 Vue.use(VueSweetalert2)
 Vue.component('multiselect', Multiselect)
@@ -29,6 +30,7 @@ Vue.component('location-table', require('./components/location/table').default);
 Vue.component('product-table', require('./components/product/table').default);
 Vue.component('product-sync-button', require('./components/product/sync-button').default);
 Vue.component('report-table', require('./components/report/table').default);
+Vue.component('report-print', require('./components/report/print-button').default);
 Vue.component('schedule-table', require('./components/schedule/table').default);
 Vue.component('shift-table', require('./components/shift/table').default);
 Vue.component('shift-form', require('./components/shift/form').default);

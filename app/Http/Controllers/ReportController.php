@@ -40,4 +40,26 @@ class ReportController extends Controller
 
         return Excel::download(new ReportExport($date), "rekap-{$date}.xlsx");
     }
+
+    public function print(Request $request)
+    {
+        $date = $request->has('date')? $request->date : date('d-m-Y');
+        $date = Carbon::parse($date)->format('Y-m-d');
+
+        $scheduleId = Schedule::whereDate('from', $date)->pluck('id')->toArray();
+        $rows = InventoryReport::with('schedule.shift', 'product')->whereIn('schedule_id', $scheduleId)->get();
+
+        $data = $rows->map(function($row) {
+            return [
+                'date' => $row->created_at->format('d-m-Y'),
+                'shift' => $row->schedule->shift->name,
+                'line' => $row->product->line,
+                'gtin' =>$row->product->gtin,
+                'name' => $row->product->name,
+                'qty' => $row->qty
+            ];
+        });
+        
+        return response()->json($data);
+    }
 }

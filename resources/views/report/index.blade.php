@@ -12,7 +12,7 @@
         <h4 class="mg-b-0 tx-spacing--1">Rekapitulasi</h4>
     </div>
     <div class="d-none d-md-block">
-        <button class="btn btn-sm pd-x-15 btn-white btn-uppercase mg-l-5"><i data-feather="printer" class="wd-10 mg-r-5"></i> Print</button>
+        <report-print url="{{ route('report.print', ['date' => $date]) }}"></report-print>
         <a href="{{ route('report.download', ['date' => $date, 'time' => time()]) }}" class="btn btn-sm pd-x-15 btn-primary btn-uppercase mg-l-5"><i class="fa-solid fa-file-excel wd-10 mg-r-5"></i> Download</a>
     </div>
 </div>

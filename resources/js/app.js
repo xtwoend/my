@@ -27,6 +27,7 @@ Vue.component('datepicker', Datepicker)
 Vue.component('line-in', require('./components/inventory/line-in').default);
 Vue.component('location-table', require('./components/location/table').default);
 Vue.component('product-table', require('./components/product/table').default);
+Vue.component('product-sync-button', require('./components/product/sync-button').default);
 Vue.component('report-table', require('./components/report/table').default);
 Vue.component('schedule-table', require('./components/schedule/table').default);
 Vue.component('shift-table', require('./components/shift/table').default);

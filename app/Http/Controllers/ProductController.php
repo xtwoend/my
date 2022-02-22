@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Exports\ProductExport;
+use PhpMqtt\Client\Facades\MQTT;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Resources\ProductResource;
 
@@ -80,5 +81,21 @@ class ProductController extends Controller
     public function download()
     {
         return Excel::download(new ProductExport, 'product.xlsx');
+    }
+
+    public function sendToMQTT()
+    {
+        $products = Product::select('name', 'gtin', 'line')->get();
+        $rows = $products->map(function($row) {
+            return [
+                'barcode' => $row->gtin,
+                'name' => $row->name,
+                'line' => $row->line
+            ];
+        });
+
+        $data = $rows->toArray();
+
+        return MQTT::publish('mayora/products', json_encode($data));
     }
 }

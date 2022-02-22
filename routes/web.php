@@ -34,6 +34,7 @@ Route::group([
     Route::put('/product/{id}', [ProductController::class, 'update'])->name('product.update');
     Route::delete('/product/{id}', [ProductController::class, 'remove'])->name('product.remove');
     Route::get('/product/download', [ProductController::class, 'download'])->name('product.download');
+    Route::post('/product/send-mqtt', [ProductController::class, 'sendToMQTT'])->name('product.send-mqtt');
 
     // Shift
     Route::get('/shift', [ShiftController::class, 'index'])->name('shift');

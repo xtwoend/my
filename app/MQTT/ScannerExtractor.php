@@ -13,13 +13,13 @@ class ScannerExtractor
 
     public function extract()
     {
-        $delimiter = '|';
-        [$barcode, $line, $time] = explode($delimiter, $this->message);
+        // $delimiter = '|';
+        // [$barcode, $line, $time] = explode($delimiter, $this->message);
         
         $this->attributes = [
-            'barcode' => $barcode,
-            'line' => $line, 
-            'time' => $time
+            'barcode' => $this->message,
+            // 'line' => $line, 
+            // 'time' => $time
         ];
 
         return $this;

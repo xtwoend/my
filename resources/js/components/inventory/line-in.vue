@@ -67,7 +67,7 @@ export default {
                 }},
                 {name: 'gtin', title: 'Barcode', titleClass: 'w-180'},
                 {name: 'product.name', title: 'SKU'},
-                {name: 'line', title: 'Line' },
+                {name: 'product.line', title: 'Line' },
                 {name: 'status', title: 'Status',  titleClass: 'w-120', formatter(val) {
                     return 'Good';
                 }},
@@ -114,7 +114,6 @@ export default {
         listen() {
             Echo.channel('inventory')
             .listen('InventoryIn', (e) => {
-                console.log(e)
                 this.data.unshift(e.data)
                 this.barcode = e.data.gtin
                 if(this.data.length > 15) {

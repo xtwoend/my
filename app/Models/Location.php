@@ -36,19 +36,19 @@ class Location extends Model
      *
      * @throws \App\Warehouse\Exceptions\InvalidGtinException
      */
-    public function addInventory($value, $line, $amount = 1)
+    public function addInventory($value, $amount = 1)
     {
         if ($amount < 1) {
             return $this->newCollection();
         }
 
-        $instances = $this->newCollection(array_map(function () use ($value, $line) {
+        $instances = $this->newCollection(array_map(function () use ($value) {
             // $rack = $this->activeRack();
             return $this->inventory()->create([
                 'gtin' => $value,
                 'rack_id' => null,
                 'scan_time' => Carbon::now(),
-                'line' => $line
+                'line' => null
             ]);
         }, range(1, $amount)));
 

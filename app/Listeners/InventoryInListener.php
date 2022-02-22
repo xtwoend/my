@@ -29,8 +29,8 @@ class InventoryInListener
     {
         $data = (object) $event->data;
         $location = $event->location;
-       
-        $location->addInventory($data->barcode, $data->line);
+    
+        $location->addInventory($data->barcode);
     }
 
 

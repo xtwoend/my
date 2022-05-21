@@ -33,8 +33,8 @@ window.Pusher = require('pusher-js');
 window.Echo = new Echo({
     broadcaster: 'pusher',
     key: process.env.MIX_PUSHER_APP_KEY,
-    wsHost: process.env.MIX_PUSHER_HOST,
-    wsPort: process.env.MIX_PUSHER_PORT,
+    wsHost:  "10.14.42.148",//process.env.MIX_PUSHER_HOST,
+    wsPort: 6001,//process.env.MIX_PUSHER_PORT,
     forceTLS: false,
     disableStats: true,
 });

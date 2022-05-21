@@ -86,6 +86,7 @@ class ProductController extends Controller
     public function sendToMQTT()
     {
         $products = Product::select('name', 'gtin', 'line')->get();
+        
         $rows = $products->map(function($row) {
             return [
                 'barcode' => $row->gtin,

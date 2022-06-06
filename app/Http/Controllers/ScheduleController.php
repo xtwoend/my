@@ -44,4 +44,12 @@ class ScheduleController extends Controller
        
         return $active;
     }
+
+    public function dropdown()
+    {
+        $now = Carbon::now()->format('Y-m-d H:i:s');
+        $schedules = Schedule::with('shift')->where('from', '<=', $now)->orderBy('from', 'desc')->limit(5)->get();
+        
+        return ScheduleResource::collection($schedules);
+    }
 }

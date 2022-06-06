@@ -21,6 +21,9 @@
         :css="css.pagination"
         @vuetable-pagination:change-page="onChangePage"
     ></vuetable-pagination>
+
+    <edit-form :reason="reason" :url="editUrl" id="reason-edit" v-if="reason" @reload="$refs.vuetable.reload()"></edit-form>
+
 </div>
 </template>
 
@@ -28,13 +31,14 @@
 import Vuetable from 'vuetable-2'
 import CssForBootstrap4 from '../table/VuetableCssBootstrap4.js'
 import VuetablePagination from '../table/VuetablePagination'
-import moment from 'moment'
+import EditForm from './edit-form'
 
 export default {
     props: {
         url: String
     },
     components: {
+        EditForm,
         Vuetable,
         VuetablePagination
     },
@@ -43,27 +47,13 @@ export default {
             css: CssForBootstrap4,
             keyword: "",
             fields: [
-                {name: 'created_at', title: 'Date', titleClass: 'w-120', formatter (val) {
-                    const d = moment(val);
-                    return d.format('DD-MM-YYYY')
-                }},
-                {name: 'schedule.shift.name', title: 'Shift'},
-                {name: 'product.line', title: 'Line'},
-                {name: 'product.gtin', title: 'SKU'},
-                {name: 'product.name', title: 'Name'},
-                {name: 'product.varian_pack', title: 'Packing Varian'},
-                {name: 'qty', title: 'Scan Qty', dataClass: 'text-center', titleClass: 'text-center'},
-                {name: 'pallet_qty', title: 'Pallet Qty'},
-                {name: 'total', title: 'Goods Qty', dataClass: 'text-center', titleClass: 'text-center'},
-                {name: 'return_qty', title: 'Rejected'},
-                {name: 'id', title: '', formatter (val) {
-                    return `<a href="/recapitulation/pallet?report_id=${val}">Form (Pallet)</a>`;
-                }},
-                
+                {name: 'id', title: '#ID'},
+                {name: 'reason', title: 'Reason'},
+                {name: 'action', title: '', dataClass: 'w-120'},
             ],
             params: {},
-            shift: null,
             editUrl: '',
+            reason: null,
             
         }
     },
@@ -77,6 +67,27 @@ export default {
         filter() {
             this.params.q = this.keyword
             this.$refs.vuetable.reload()
+        },
+        edit(row) {
+            this.reason = row
+            this.editUrl = `/reason/${row.id}`
+            this.$nextTick(() => {
+               $('#reason-edit').modal('show')
+            });
+        },
+        remove(row) {
+            this.$swal({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true
+            }).then(r => {
+                if(r.isConfirmed) {
+                    axios.delete(`/reason/${row.id}`).then(res => {
+                        this.$refs.vuetable.reload()
+                    })
+                }
+            })
         }
     }
 }

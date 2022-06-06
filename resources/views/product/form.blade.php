@@ -10,7 +10,7 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label class="d-block">SKU</label>
+                    <label class="d-block">SKU Barcode</label>
                     <div class="input-group mg-b-10">
                         {{ Form::text('gtin', null, ['class' => 'form-control', 'placeholder'=> 'SKU Barcode', 'id' => 'gtin', 'autofocus' => true]) }}
                         <div class="input-group-append">
@@ -25,8 +25,20 @@
                     {{ Form::text('name', null, ['class' => 'form-control', 'placeholder'=> 'Enter product name']) }}
                 </div>
                 <div class="form-group">
+                    <label class="d-block">Packing Varian</label>
+                    {{ Form::text('varian_pack', null, ['class' => 'form-control', 'placeholder'=> 'Packing Varian']) }}
+                </div>
+                <div class="form-group">
                     <label class="d-block">Line Conveyor</label>
                     {{ Form::text('line', null, ['class' => 'form-control', 'placeholder'=> 'Line conveyor']) }}
+                </div>
+                <div class="form-group">
+                    <label class="d-block">Box / Pallet</label>
+                    {{ Form::number('box_pallet', null, ['class' => 'form-control', 'placeholder'=> 'Box per pallet']) }}
+                </div>
+                <div class="form-group">
+                    <label class="d-block">Description</label>
+                    {{ Form::textarea('description', null, ['class' => 'form-control', 'placeholder'=> '', 'rows' => 3]) }}
                 </div>
             </div>
             <div class="modal-footer">

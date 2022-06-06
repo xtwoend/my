@@ -11,6 +11,11 @@ class Schedule extends Model
 
     protected $fillable = ['shift_id', 'from', 'to', 'active'];
 
+    protected $casts = [
+        'from' => 'datetime',
+        'to' => 'datetime'
+    ];
+
     public function shift()
     {
         return $this->belongsTo(Shift::class, 'shift_id');

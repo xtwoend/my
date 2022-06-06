@@ -21,6 +21,7 @@
                 <a href="" class="nav-link"><i data-feather="home"></i> Inventory</a>
                 <ul class="navbar-menu-sub">
                     <li class="nav-sub-item"><a href="{{ url('/line-in') }}" class="nav-sub-link"><i data-feather="log-in"></i>Line In</a></li>
+                    <li class="nav-sub-item"><a href="{{ url('/recapitulation') }}" class="nav-sub-link"><i data-feather="clipboard"></i>Form Pallet</a></li>
                     <li class="nav-sub-item"><a href="{{ url('/report') }}" class="nav-sub-link"><i data-feather="clipboard"></i>Rekapitulasi</a></li>
                 </ul>
             </li>
@@ -34,7 +35,8 @@
                 <a href="" class="nav-link"><i data-feather="settings"></i> Setting</a>
                 <ul class="navbar-menu-sub">
                     <li class="nav-sub-item"><a href="{{ route('shift') }}" class="nav-sub-link"><i data-feather="calendar"></i>Shifts</a></li>
-                    <li class="nav-sub-item"><a href="{{ route('location') }}" class="nav-sub-link"><i data-feather="map-pin"></i> Location</a></li>
+                    <li class="nav-sub-item"><a href="{{ route('location') }}" class="nav-sub-link"><i data-feather="map-pin"></i>Location</a></li>
+                    <li class="nav-sub-item"><a href="{{ route('reason') }}" class="nav-sub-link"><i data-feather="clipboard"></i>Not Goods Reason</a></li>
                     <li class="nav-sub-item"><a href="{{ route('sync') }}" class="nav-sub-link"><i data-feather="refresh-cw"></i> SAP Sync</a></li>
                 </ul>
             </li>

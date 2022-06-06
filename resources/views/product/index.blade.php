@@ -24,7 +24,7 @@
 <div>
     <product-table url="{{ route('product.data') }}"></product-table>
 </div>
-@include('product.from')
+@include('product.form')
 @endsection
 
 @section('js')

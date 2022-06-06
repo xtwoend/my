@@ -2,11 +2,15 @@
 
 namespace App\Providers;
 
+use App\Models\Pallet;
 use App\Models\Inventory;
 use App\Events\MQTTReceived;
+use App\Models\ProductReturn;
+use App\Observers\PalletObserver;
 use App\Observers\InventoryObserver;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
+use App\Observers\ProductReturnObserver;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -34,6 +38,8 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         Inventory::observe(InventoryObserver::class);
+        Pallet::observe(PalletObserver::class);
+        ProductReturn::observe(ProductReturnObserver::class);
     }
 
     /**

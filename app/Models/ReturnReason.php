@@ -5,11 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class ReturnReason extends Model
 {
     use HasFactory;
-
-    protected $fillable = [
-        'gtin', 'name', 'line', 'varian_pack', 'box_pallet', 'description'
-    ];
+    public $timestamps = false;
+    protected $fillable = ['reason'];
 }

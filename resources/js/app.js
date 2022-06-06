@@ -35,6 +35,10 @@ Vue.component('schedule-table', require('./components/schedule/table').default);
 Vue.component('shift-table', require('./components/shift/table').default);
 Vue.component('shift-form', require('./components/shift/form').default);
 Vue.component('sync-log', require('./components/sync/table-log').default);
+Vue.component('recap', require('./components/recap/form').default);
+Vue.component('recap-table', require('./components/recap/pallet-table').default);
+Vue.component('reason-table', require('./components/reason/table').default);
+Vue.component('ng-form', require('./components/ng-form').default);
 
 
 // filters

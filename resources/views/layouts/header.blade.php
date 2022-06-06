@@ -36,7 +36,7 @@
                 <ul class="navbar-menu-sub">
                     <li class="nav-sub-item"><a href="{{ route('shift') }}" class="nav-sub-link"><i data-feather="calendar"></i>Shifts</a></li>
                     <li class="nav-sub-item"><a href="{{ route('location') }}" class="nav-sub-link"><i data-feather="map-pin"></i>Location</a></li>
-                    <li class="nav-sub-item"><a href="{{ route('reason') }}" class="nav-sub-link"><i data-feather="clipboard"></i>Not Goods Reason</a></li>
+                    <li class="nav-sub-item"><a href="{{ route('reason') }}" class="nav-sub-link"><i data-feather="clipboard"></i>Reject Reason</a></li>
                     <li class="nav-sub-item"><a href="{{ route('sync') }}" class="nav-sub-link"><i data-feather="refresh-cw"></i> SAP Sync</a></li>
                 </ul>
             </li>

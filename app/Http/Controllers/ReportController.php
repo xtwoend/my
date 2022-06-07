@@ -56,7 +56,11 @@ class ReportController extends Controller
                 'line' => $row->product->line,
                 'gtin' =>$row->product->gtin,
                 'name' => $row->product->name,
-                'qty' => $row->qty
+                'varian_pack' => $row->product->varian_pack,
+                'qty' => $row->qty,
+                'pallet_qty' => $row->pallet_qty,
+                'total' => $row->total,
+                'return_qty' => $row->return_qty
             ];
         });
         

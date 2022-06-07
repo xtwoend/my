@@ -39,7 +39,11 @@ class ReportExport implements FromCollection, WithHeadings, WithMapping, WithSty
             $row->product->line,
             $row->product->gtin,
             $row->product->name,
-            $row->qty
+            $row->product->varian_pack,
+            $row->qty,
+            $row->pallet_qty,
+            $row->total,
+            $row->return_qty
         ];
     }
 
@@ -50,8 +54,12 @@ class ReportExport implements FromCollection, WithHeadings, WithMapping, WithSty
             'SHIFT',
             'LINE',
             'BARCODE',
-            'SKU',
-            'QTY'
+            'PRODUCT NAME',
+            'PACKING VARIAN',
+            'QTY',
+            'PALLET',
+            'ACCEPTED',
+            'REJECTED'
         ];
     }
 

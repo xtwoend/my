@@ -54,7 +54,7 @@ export default {
                 {name: 'product.varian_pack', title: 'Packing Varian'},
                 {name: 'qty', title: 'Scan Qty', dataClass: 'text-center', titleClass: 'text-center'},
                 {name: 'pallet_qty', title: 'Pallet Qty'},
-                {name: 'total', title: 'Goods Qty', dataClass: 'text-center', titleClass: 'text-center'},
+                {name: 'total', title: 'Accepted', dataClass: 'text-center', titleClass: 'text-center'},
                 {name: 'return_qty', title: 'Rejected'},
                 {name: 'id', title: '', formatter (val) {
                     return `<a href="/recapitulation/pallet?report_id=${val}">Form (Pallet)</a>`;

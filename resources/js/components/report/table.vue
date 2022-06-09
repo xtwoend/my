@@ -43,7 +43,7 @@ export default {
             css: CssForBootstrap4,
             keyword: "",
             fields: [
-                {name: 'created_at', title: 'Date', titleClass: 'w-120', formatter (val) {
+                {name: 'schedule.from', title: 'Date', titleClass: 'w-120', formatter (val) {
                     const d = moment(val);
                     return d.format('DD-MM-YYYY')
                 }},

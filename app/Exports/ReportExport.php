@@ -4,6 +4,7 @@ namespace App\Exports;
 
 use App\Models\Schedule;
 use App\Models\InventoryReport;
+use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Concerns\WithMapping;
@@ -14,10 +15,12 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 class ReportExport implements FromCollection, WithHeadings, WithMapping, WithStyles, ShouldAutoSize
 {
-    protected $date;
+    protected $from;
+    protected $to;
 
-    public function __construct($date) {
-        $this->date = $date;
+    public function __construct($from, $to) {
+        $this->from = $from;
+        $this->to = $to;
     }
 
     /**
@@ -25,7 +28,7 @@ class ReportExport implements FromCollection, WithHeadings, WithMapping, WithSty
     */
     public function collection()
     {
-        $scheduleId = Schedule::whereDate('from', $this->date)->pluck('id')->toArray();
+        $scheduleId = Schedule::whereBetween(DB::raw('DATE(`from`)'), [$this->from->format('Y-m-d'), $this->to->format('Y-m-d')])->pluck('id')->toArray();
         $rows = InventoryReport::with('schedule.shift', 'product')->whereIn('schedule_id', $scheduleId)->get();
        
         return $rows;
@@ -34,7 +37,7 @@ class ReportExport implements FromCollection, WithHeadings, WithMapping, WithSty
     public function map($row): array
     {
         return [
-            $row->created_at->format('d-m-Y'),
+            $row->schedule->from->format('d-m-Y'),
             $row->schedule->shift->name,
             $row->product->line,
             $row->product->gtin,

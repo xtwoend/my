@@ -10,7 +10,7 @@ class InventoryReport extends Model
     use HasFactory;
 
     protected $fillable = ['location_id', 'product_id', 'schedule_id', 'qty', 'return_qty', 'pallet_qty', 'total'];
-
+    
     public function product()
     {
         return $this->belongsTo(Product::class);

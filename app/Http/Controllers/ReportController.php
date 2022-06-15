@@ -36,7 +36,31 @@ class ReportController extends Controller
 
         $scheduleId = Schedule::whereBetween(DB::raw('DATE(`from`)'), [$from->format('Y-m-d'), $to->format('Y-m-d')])->pluck('id')->toArray();
         
-        $rows = InventoryReport::with('schedule.shift', 'product')->whereIn('schedule_id', $scheduleId)->paginate($rpp);
+        $rows = InventoryReport::with('schedule.shift', 'product')->whereIn('schedule_id', $scheduleId);
+
+        if($request->has('sort') && ! is_null($request->sort)) {
+            $sort = $request->sort;
+            list($field, $dir) = explode('|', $sort);
+
+            switch ($field) {
+                case 'schedule.from':
+                    
+                    break;
+                case 'schedule.shift.name':
+                    # code...
+                    break;
+                case 'product.gtin':
+                    $rows = $rows->with(['product' => function($query) use ($dir) {
+                        return $query->orderBy('gtin', $dir);
+                    }]);
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+        }
+
+        $rows = $rows->paginate($rpp);
 
         return InventoryReportResource::collection($rows);
     }

@@ -46,10 +46,10 @@ export default {
                 {name: 'schedule.from', title: 'Date', titleClass: 'w-120', formatter (val) {
                     const d = moment(val);
                     return d.format('DD-MM-YYYY')
-                }},
-                {name: 'schedule.shift.name', title: 'Shift'},
+                }, sortField: 'schedule.from'},
+                {name: 'schedule.shift.name', title: 'Shift', sortField: 'schedule.shift.name'},
                 {name: 'product.line', title: 'Line'},
-                {name: 'product.gtin', title: 'SKU'},
+                {name: 'product.gtin', title: 'SKU', sortField: 'product.gtin'},
                 {name: 'product.name', title: 'Name'},
                 {name: 'product.varian_pack', title: 'Packing Varian'},
                 {name: 'qty', title: 'Scan Qty', dataClass: 'text-center', titleClass: 'text-center'},

@@ -36,7 +36,11 @@ class ReportController extends Controller
 
         $scheduleId = Schedule::whereBetween(DB::raw('DATE(`from`)'), [$from->format('Y-m-d'), $to->format('Y-m-d')])->pluck('id')->toArray();
         
-        $rows = InventoryReport::with('schedule.shift', 'product')->whereIn('schedule_id', $scheduleId);
+        // $rows = InventoryReport::with('schedule.shift', 'product')->whereIn('schedule_id', $scheduleId);
+        $rows = InventoryReport::with('schedule.shift', 'product')->select(DB::raw('inventory_reports.*,products.gtin,schedules.shift_id'))
+            ->join('products', 'products.id', '=', 'inventory_reports.product_id')
+            ->join('schedules', 'schedules.id', '=', 'inventory_reports.schedule_id')
+            ->whereIn('inventory_reports.schedule_id', $scheduleId);
 
         if($request->has('sort') && ! is_null($request->sort)) {
             $sort = $request->sort;
@@ -44,15 +48,13 @@ class ReportController extends Controller
 
             switch ($field) {
                 case 'schedule.from':
-                    
+                    $rows = $rows->orderBy('schedules.from', $dir);
                     break;
                 case 'schedule.shift.name':
-                    # code...
+                    $rows = $rows->orderBy('schedules.shift_id', $dir);
                     break;
                 case 'product.gtin':
-                    $rows = $rows->with(['product' => function($query) use ($dir) {
-                        return $query->orderBy('gtin', $dir);
-                    }]);
+                    $rows = $rows->orderBy('products.gtin', $dir);
                     break;
                 default:
                     # code...
